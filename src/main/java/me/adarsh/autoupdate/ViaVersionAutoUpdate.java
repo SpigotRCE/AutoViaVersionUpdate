@@ -11,7 +11,9 @@ public class ViaVersionAutoUpdate {
         this.plugin = plugin;
 
         // Check for an update on startup,
-        new UpdateChecker(this).run();
+        new UpdateChecker(this, "VV").run(); // ViaVerison
+        new UpdateChecker(this, "VB").run(); // ViaBackwards
+        new UpdateChecker(this, "VR").run(); // ViaRewind
     }
 
     /**

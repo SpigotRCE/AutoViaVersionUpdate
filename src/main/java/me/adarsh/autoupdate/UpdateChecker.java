@@ -19,15 +19,53 @@ public class UpdateChecker implements Runnable {
     public static final long CHECK_UPDATE_FREQUENCY = 10*60; // 10 minutes
 
     /** The url to the jenkins last build information */
-    public static final String LAST_BUILD_URL = "https://ci.viaversion.com/job/ViaVersion/lastBuild/api/json?random=%f";
+    public static final String LAST_BUILD_URL_VV = "https://ci.viaversion.com/job/ViaVersion/lastBuild/api/json?random=%f";
+
+    /** The url to the jenkins last build information */
+    public static final String LAST_BUILD_URL_VB = "https://ci.viaversion.com/job/ViaBackwards/lastBuild/api/json?random=%f";
+
+    /** The url to the jenkins last build information */
+    public static final String LAST_BUILD_URL_VR = "https://ci.viaversion.com/job/ViaRewind/lastBuild/api/json?random=%f";
+
 
     /** The url to download the viaversion jar from */
-    public static final String DOWNLOAD_URL = "https://ci.viaversion.com/job/ViaVersion/lastBuild/artifact/%s";
+    public static final String DOWNLOAD_URL_VV = "https://ci.viaversion.com/job/ViaVersion/lastBuild/artifact/%s";
+
+    /** The url to download the viabackwards jar from */
+    public static final String DOWNLOAD_URL_VB = "https://ci.viaversion.com/job/ViaVersion/lastBuild/artifact/%s";
+
+    /** The url to download the viarewind jar from */
+    public static final String DOWNLOAD_URL_VR = "https://ci.viaversion.com/job/ViaVersion/lastBuild/artifact/%s";
+
+    /** The url to the jeskins last build information */
+    private final String LAST_BUILD_URL;
+
+    /** The url to the target download */
+    private final String DOWNLOAD_URL;
 
     private ViaVersionAutoUpdate viaVersionAutoUpdate;
 
-    public UpdateChecker(ViaVersionAutoUpdate viaVersionAutoUpdate) {
+    public UpdateChecker(ViaVersionAutoUpdate viaVersionAutoUpdate, String type) {
         this.viaVersionAutoUpdate = viaVersionAutoUpdate;
+        switch (type) {
+            case "VV": {
+                DOWNLOAD_URL = DOWNLOAD_URL_VV;
+                LAST_BUILD_URL = LAST_BUILD_URL_VV;
+                break;
+            }
+            case "VB": {
+                DOWNLOAD_URL = DOWNLOAD_URL_VB;
+                LAST_BUILD_URL = LAST_BUILD_URL_VB;
+                break;
+            }
+            case "VR": {
+                DOWNLOAD_URL = DOWNLOAD_URL_VR;
+                LAST_BUILD_URL = LAST_BUILD_URL_VR;
+                break;
+            }
+            default:
+                throw new IllegalArgumentException("Invalid type: " + type);
+        }
     }
 
     @Override
