@@ -32,10 +32,10 @@ public class UpdateChecker implements Runnable {
     public static final String DOWNLOAD_URL_VV = "https://ci.viaversion.com/job/ViaVersion/lastBuild/artifact/%s";
 
     /** The url to download the viabackwards jar from */
-    public static final String DOWNLOAD_URL_VB = "https://ci.viaversion.com/job/ViaVersion/lastBuild/artifact/%s";
+    public static final String DOWNLOAD_URL_VB = "https://ci.viaversion.com/job/ViaBackwards/lastBuild/artifact/%s";
 
     /** The url to download the viarewind jar from */
-    public static final String DOWNLOAD_URL_VR = "https://ci.viaversion.com/job/ViaVersion/lastBuild/artifact/%s";
+    public static final String DOWNLOAD_URL_VR = "https://ci.viaversion.com/job/ViaRewind/lastBuild/artifact/%s";
 
     /** The url to the jeskins last build information */
     private final String LAST_BUILD_URL;
